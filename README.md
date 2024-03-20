@@ -16,30 +16,32 @@ If you need no chairs, return 1. If there aren't enough spare chairs available, 
 
 >>
  ```javascript
-function findChairs(rooms, needed) {
+function findSpareChairs(rooms, need) {
     let takenChairs = [];
-    let remainingNeeded = needed;
+    let remainingNeed = need;
 
-    for (let room of rooms) {
-        let occupants = room[0].length;
-        let chairs = room[1];
+    for (let i = 0; i < rooms.length; i++) {
+        const [occupants, chairs] = rooms[i];
+        const availableChairs = chairs - occupants.length;
 
-        if (remainingNeeded > 0) {
-            let availableChairs = chairs - occupants;
-            let takenFromThisRoom = Math.min(remainingNeeded, availableChairs);
-            takenChairs.push(takenFromThisRoom);
-            remainingNeeded -= takenFromThisRoom;
+        if (availableChairs >= remainingNeed) {
+            takenChairs.push(remainingNeed);
+            return takenChairs;
+        } else if (availableChairs > 0) {
+            takenChairs.push(availableChairs);
+            remainingNeed -= availableChairs;
         } else {
-            break; 
+            takenChairs.push(0);
         }
     }
 
-    return remainingNeeded === 0 ? takenChairs : 0;
+    return takenChairs.length === 0 ? 1 : 0; // No chairs needed or not enough chairs available
 }
 
-let rooms = [['XXX', 3], ['XXXXX', 6], ['XXXXXX', 9], ['XXX', 2]];
-let neededChairs = 4;
-console.log(findChairs(rooms, neededChairs)); 
+// Example usage:
+const rooms = [['XXX', 3], ['XXXXX', 6], ['XXXXXX', 9], ['XXX',2]];
+const need = 4;
+console.log(findSpareChairs(rooms, need)); // Output: [0, 1, 3]
 
 
  ```
