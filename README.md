@@ -15,7 +15,7 @@ no chairs free in room 0, take 1 from room 1, take 3 from room 2. no need to con
 If you need no chairs, return 1. If there aren't enough spare chairs available, return 0.
 
 >>
-...javascript
+ ```javascript
 function findChairs(rooms, need) {
   if (!need) return "Game On"; // No chairs needed
 
@@ -39,7 +39,7 @@ const rooms = [['XXX', 3], ['XXXXX', 6], ['XXXXXX', 9], ['XXX', 2]];
 const need = 4;
 const result = findChairs(rooms, need);
 console.log(result); 
-...
+ ```javascript
 
 Op
 [ 0, 1, 3 ]
