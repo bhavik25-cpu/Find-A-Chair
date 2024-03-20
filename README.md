@@ -39,7 +39,7 @@ const rooms = [['XXX', 3], ['XXXXX', 6], ['XXXXXX', 9], ['XXX', 2]];
 const need = 4;
 const result = findChairs(rooms, need);
 console.log(result); 
- ```javascript
+ ```
 
-Op
+OUTPUT
 [ 0, 1, 3 ]
