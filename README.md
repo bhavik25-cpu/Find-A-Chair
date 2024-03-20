@@ -35,13 +35,12 @@ function findSpareChairs(rooms, need) {
         }
     }
 
-    return takenChairs.length === 0 ? 1 : 0; // No chairs needed or not enough chairs available
+    return takenChairs.length === 0 ? 1 : 0; 
 }
 
-// Example usage:
 const rooms = [['XXX', 3], ['XXXXX', 6], ['XXXXXX', 9], ['XXX',2]];
 const need = 4;
-console.log(findSpareChairs(rooms, need)); // Output: [0, 1, 3]
+console.log(findSpareChairs(rooms, need)); 
 
 
  ```
