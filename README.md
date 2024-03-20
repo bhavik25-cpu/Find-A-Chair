@@ -16,29 +16,31 @@ If you need no chairs, return 1. If there aren't enough spare chairs available, 
 
 >>
  ```javascript
-function findChairs(rooms, need) {
-  if (!need) return "No chairs needed"; 
+function findChairs(rooms, needed) {
+    let takenChairs = [];
+    let remainingNeeded = needed;
 
-  const result = [];
-  for (const [occupants, capacity] of rooms) {
-    const freeChairs = capacity - occupants.length;
-    if (freeChairs > 0) {
-      const take = Math.min(need, freeChairs);
-      result.push(take);
-      need -= take; 
-      if (need === 0) 
-      break;
-    } else {
-      result.push(0);
+    for (let room of rooms) {
+        let occupants = room[0].length;
+        let chairs = room[1];
+
+        if (remainingNeeded > 0) {
+            let availableChairs = chairs - occupants;
+            let takenFromThisRoom = Math.min(remainingNeeded, availableChairs);
+            takenChairs.push(takenFromThisRoom);
+            remainingNeeded -= takenFromThisRoom;
+        } else {
+            break; 
+        }
     }
-  }
 
-  return need === 0 ? result : "Not enough!"; 
+    return remainingNeeded === 0 ? takenChairs : 0;
 }
-const rooms = [['XXX', 3], ['XXXXX', 6], ['XXXXXX', 9], ['XXX', 2]];
-const need = 4;
-const result = findChairs(rooms, need);
-console.log(result); 
+
+let rooms = [['XXX', 3], ['XXXXX', 6], ['XXXXXX', 9], ['XXX', 2]];
+let neededChairs = 4;
+console.log(findChairs(rooms, neededChairs)); 
+
 
  ```
 
